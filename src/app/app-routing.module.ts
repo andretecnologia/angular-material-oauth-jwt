@@ -11,14 +11,15 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
   },
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
+
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 
 

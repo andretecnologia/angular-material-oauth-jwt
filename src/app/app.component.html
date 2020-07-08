@@ -1,1 +1,72 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav
+    [disableClose]="true"
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/home/dashboard'">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <h4 mat-line>Dashboard</h4>
+      </a>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon mat-list-icon>view_list</mat-icon>
+            &nbsp;&nbsp;&nbsp;&ensp;Cadastros
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item [routerLink]="'/home/usuarios'">
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <h4 mat-line>Usuários</h4>
+        </a>
+        <a mat-list-item [routerLink]="'/home/perfis'">
+          <mat-icon mat-list-icon>assignment_ind</mat-icon>
+          <h4 mat-line>Perfis</h4>
+        </a>
+        <a mat-list-item [routerLink]="'/home/agentes'">
+          <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+          <h4 mat-line>Agentes Públicos</h4>
+        </a>
+
+      </mat-expansion-panel>
+      <a mat-list-item [routerLink]="'/home/eventos'">
+        <mat-icon mat-list-icon>assignment</mat-icon>
+        <h4 mat-line>Eventos</h4>
+      </a>
+      <a mat-list-item [routerLink]="'/home/lancamentos'">
+        <mat-icon mat-list-icon>note_add</mat-icon>
+        <h4 mat-line>Lançamentos</h4>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z2">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <span class="example-spacer"></span>
+      <small class="font-12">{{first}}</small>
+      <button mat-icon-button>
+        <mat-icon aria-label="Sair">exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div style="padding: 30px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
