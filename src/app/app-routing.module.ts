@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login/login.component';
 import { AuthGuardService } from './auth/auth.guard.service'
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FuncionariosHomeComponent } from './pages/funcionarios/funcionarios-home/funcionarios-home.component';
 
 
 const routes: Routes = [
@@ -10,6 +12,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'funcionarios',
+    component: FuncionariosHomeComponent,
   },
 
   {
