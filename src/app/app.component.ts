@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from './auth/auth.services';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
+    public authService : AuthService
   ) {
 
   }
@@ -31,4 +33,5 @@ export class AppComponent {
 
     return saida;
   }
+  
 }
