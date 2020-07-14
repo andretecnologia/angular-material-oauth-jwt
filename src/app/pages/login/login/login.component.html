@@ -15,7 +15,11 @@
           </mat-error>
         
           <mat-form-field>
-            <input matInput type="password" placeholder="Senha" formControlName="password" />
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" />
+            <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="loginForm.controls.password.errors?.required">
+              A senha é obrigatória
+            </mat-error>
           </mat-form-field>
           
           <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
