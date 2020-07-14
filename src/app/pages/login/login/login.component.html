@@ -2,17 +2,17 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <mat-card class="login-container">
-          <mat-card-title class="text-center">Login</mat-card-title>
+          <mat-card-title class="text-center title">Login</mat-card-title>
 
           <mat-form-field>
             <input matInput type="email" placeholder="Email" formControlName="email"/>
+            <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
+              O email é obrigatório
+            </mat-error>
+            <mat-error *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.touched">
+              O email inserido é inválido
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
-            O email é obrigatório
-          </mat-error>
-          <mat-error *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.touched">
-            O email inserido é inválido
-          </mat-error>
 
           <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" />
@@ -21,11 +21,8 @@
               A senha é obrigatória
             </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.email.touched">
-            A senha é obrigatória
-          </mat-error>
 
-          <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
       </mat-card>
     </form>
 
