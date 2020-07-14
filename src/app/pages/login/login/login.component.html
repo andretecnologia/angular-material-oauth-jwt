@@ -10,17 +10,19 @@
           <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
             O email é obrigatório
           </mat-error>
-          <mat-error *ngIf="loginForm.controls.email.errors?.email">
+          <mat-error *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.touched">
             O email inserido é inválido
           </mat-error>
-        
+
           <mat-form-field>
             <input matInput type="password" placeholder="Senha" formControlName="password" />
           </mat-form-field>
-          
+          <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.email.touched">
+            A senha é obrigatória
+          </mat-error>
+
           <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
       </mat-card>
     </form>
 
 </div>
-  
