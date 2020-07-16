@@ -62,6 +62,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { AuthService } from './auth/auth.services';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
+import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     FuncionariosHomeComponent,
     ResetComponent,
-    ForgotComponent
+    ForgotComponent,
+    UsersListComponent,
+    UsersFormComponent,
+    UsersCreateComponent,
+    UsersUpdateComponent
   ],
   imports: [
     BrowserModule,
