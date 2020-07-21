@@ -1,4 +1,4 @@
-import { MatDialog, MatSnackBar, PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+//import { MatDialog, MatSnackBar, PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 //import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/remove-dialog.component';
 import { Router } from '@angular/router';
@@ -13,19 +13,19 @@ import { tap } from 'rxjs/operators';
 export class UsersListComponent implements OnInit {
 
   displayedColumns: string[] = ['actions', 'name', 'email'];
-  data = new MatTableDataSource([]);
+  //data = new MatTableDataSource([]);
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   rerender = false;
   filter = false;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private rf: ChangeDetectorRef,
-  ) {}
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // constructor(
+  //   private router: Router,
+  //   private dialog: MatDialog,
+  //   private snackBar: MatSnackBar,
+  //   private rf: ChangeDetectorRef,
+  // ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -85,16 +85,16 @@ export class UsersListComponent implements OnInit {
       // }
     }
 
-    async doRerender() {
-      this.rerender = true;
-      this.rf.detectChanges();
-      this.rerender = false;
-    }
+    // async doRerender() {
+    //   this.rerender = true;
+    //   this.rf.detectChanges();
+    //   this.rerender = false;
+    // }
 
-    openSnackBar(message: string, config) {
-      this.snackBar.open(message, 'fechar', {
-        duration: 9000,
-        panelClass: config
-      });
-    }
+    // openSnackBar(message: string, config) {
+    //   this.snackBar.open(message, 'fechar', {
+    //     duration: 9000,
+    //     panelClass: config
+    //   });
+    // }
 }

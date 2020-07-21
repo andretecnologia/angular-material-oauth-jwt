@@ -1,20 +1,73 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-@Injectable()
+import { HttpClient } from '@angular/common/http';
+import { User } from '../core/model/user/user';
+// import { Privilege } from '../privilege/privilege';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  constructor() { }
-  // ...
-  public isAuthenticated(): boolean {
 
-    localStorage.setItem('token', 'true');
-    const token = localStorage.getItem('token');
+  private jwtHelper: JwtHelperService;
 
-    if(token) {
-      return true;
-    }
-    // Check whether the token is expired and return
-    // true or false
-    // return !this.jwtHelper.isTokenExpired(token);
-    return false;
+  constructor( private http: HttpClient ) {
+    this.jwtHelper = new JwtHelperService();
   }
+
+  storeToken(token: string) {
+    localStorage.setItem('token', `Bearer ${token}`);
+  }
+
+  // setPrivileges (privileges: Privilege[]) {
+  //   const privilegeKeys = privileges.map(privilege => privilege.key);
+  //   localStorage.setItem('privileges', privilegeKeys.toString());
+  // }
+
+  // hasPrivilege(privilege: string): boolean {
+  //   const privileges = localStorage.getItem('privileges');
+  //   return privileges.includes(privilege);
+  // }
+
+  get token() {
+    return localStorage.getItem('token');
+  }
+
+  clearToken() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('privileges');
+  }
+
+  isTokenExpired(): boolean {
+    const token = localStorage.getItem('token');
+    return this.jwtHelper.isTokenExpired(token);
+  }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return token && !this.isTokenExpired();
+  }
+
+  login({ email, password }, callback?: (any?: any) => void, error?: (msg: string) => void) {
+    const credentials = { username: email, password };
+    this.http.post<User>(`http://localhost/user/login`, credentials, { observe: 'response' }).subscribe(data => {
+      const token = data.headers.get('authorization');
+      //const privileges = data.body.profile.privileges;
+      this.storeToken(token);
+      //this.setPrivileges(privileges);
+      if (callback) {
+        callback(data.body);
+      }
+    }, e => {
+      console.log(e);
+      if (error) {
+        if (e.status === 404) {
+          error('Usuário ou senha incorretos');
+        } else {
+          error('Ocorreu um erro ao entrar, tente novamente');
+        }
+      }
+    });
+  }
+
 }

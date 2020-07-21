@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.services';
 import { Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
     if(this.authService.isAuthenticated()) {
       this.router.navigate(['/dashboard']);
     }
-    
+
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -27,8 +28,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value, (data) => {
+      this.router.navigate(['home']);
+    }, (error) => {
+      // this.snackBar.open(error, '', {
+      //   duration: 2000,
+      // });
+    });
   }
-   
+
 
 }
