@@ -66,6 +66,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
 import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { UsersUpdateComponent } from './pages/users/users-update/users-update.co
     CdkTableModule,
     CdkTreeModule,
     DragDropModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
