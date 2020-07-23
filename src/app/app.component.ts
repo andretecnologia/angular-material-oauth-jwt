@@ -22,7 +22,6 @@ export class AppComponent {
     private router: Router,
     public authService : AuthService
   ) {
-    console.log(this.authService.isAuthenticated());
 
   }
 
