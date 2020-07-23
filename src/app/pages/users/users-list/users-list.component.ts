@@ -1,4 +1,5 @@
-//import { MatDialog, MatSnackBar, PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+//import { MatDialog, PageEvent, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 //import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/remove-dialog.component';
 import { Router } from '@angular/router';
@@ -20,12 +21,12 @@ export class UsersListComponent implements OnInit {
   rerender = false;
   filter = false;
   // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // constructor(
+   constructor(
   //   private router: Router,
   //   private dialog: MatDialog,
-  //   private snackBar: MatSnackBar,
+     private snackBar: MatSnackBar,
   //   private rf: ChangeDetectorRef,
-  // ) {}
+   ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -91,10 +92,10 @@ export class UsersListComponent implements OnInit {
     //   this.rerender = false;
     // }
 
-    // openSnackBar(message: string, config) {
-    //   this.snackBar.open(message, 'fechar', {
-    //     duration: 9000,
-    //     panelClass: config
-    //   });
-    // }
+    openSnackBar(message: string, config) {
+      this.snackBar.open(message, 'fechar', {
+        duration: 9000,
+        panelClass: config
+      });
+    }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { MatSnackBar } from '@angular/material';
+ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.services';
 import { Router } from '@angular/router';
@@ -13,7 +13,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   hide = true;
-  constructor(private authService : AuthService, private router: Router) { }
+  constructor(
+    private authService : AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar ) { }
 
 
   ngOnInit () {
@@ -31,11 +34,25 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value, (data) => {
       this.router.navigate(['home']);
     }, (error) => {
-      // this.snackBar.open(error, '', {
-      //   duration: 2000,
-      // });
+       this.snackBar.open(error, '', {
+         duration: 2000,
+      });
     });
   }
 
+  openSnackBar(message: string, config) {
+    this.snackBar.open(message, 'fechar', {
+      duration: 9000,
+      panelClass: ['style-error']
+    });
+  }
+
+  // private configSucces: MatSnackBarConfig = {
+  //   panelClass: ['style-succes'],
+  // };
+
+  // private configError: MatSnackBarConfig = {
+  //   panelClass: ['style-error'],
+  // };
 
 }
