@@ -51,7 +51,8 @@ export class AuthService {
   login({ email, password }, callback?: (any?: any) => void, error?: (msg: string) => void) {
     const credentials = { email, password };
     this.http.post<User>(`http://localhost:4242/user/login`, credentials, { observe: 'response' }).subscribe(data => {
-      const token = data.headers.get('authorization');
+      // const token = data.headers.get('authorization');
+      const token = data.body.token;
       //const privileges = data.body.profile.privileges;
       this.storeToken(token);
       //this.setPrivileges(privileges);

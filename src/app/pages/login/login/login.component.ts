@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value, (data) => {
       this.loginForm.reset();
       this.loginForm.markAsPristine();
-      // this.router.navigate(['home']);
+      this.router.navigate(['home']);
     }, (error) => {
       this.loginForm.reset();
       Object.keys(this.loginForm.controls).forEach(key => {
