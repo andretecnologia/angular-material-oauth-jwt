@@ -25,6 +25,11 @@ export class AppComponent {
 
   }
 
+  logout(){
+    this.authService.clearToken();
+    this.router.navigate(['/login']);
+  }
+
   expansion(lista = []) {
     let saida = false;
     lista.forEach(element => {
@@ -33,5 +38,5 @@ export class AppComponent {
 
     return saida;
   }
-  
+
 }
