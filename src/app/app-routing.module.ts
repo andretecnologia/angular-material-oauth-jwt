@@ -5,6 +5,9 @@ import { LoginComponent } from './pages/login/login/login.component';
 import { AuthGuardService } from './auth/auth.guard.service'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FuncionariosHomeComponent } from './pages/funcionarios/funcionarios-home/funcionarios-home.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
+import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
 
 
 const routes: Routes = [
@@ -18,6 +21,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService]
   },
+
   {
     path: 'funcionarios',
     component: FuncionariosHomeComponent,
@@ -28,12 +32,23 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: '**',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  }
 
+  {
+    path: 'users',
+    component: UsersListComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      { path: '', component: UsersListComponent },
+      { path: 'create', component: UsersCreateComponent },
+      { path: 'edit/:id', component: UsersUpdateComponent },
+      { path: 'view/:id', component: UsersUpdateComponent }
+    ]
+  }
+//{
+  //  path: '**',
+  //  redirectTo: '/login',
+  //  pathMatch: 'full'
+  //}
 
   //   children: [
   //     { path: '', component: DashboardComponent },

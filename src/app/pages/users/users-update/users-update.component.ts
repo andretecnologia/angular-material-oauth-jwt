@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-update.component.scss']
 })
 export class UsersUpdateComponent implements OnInit {
+  routeSub: any;
+  route: any;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe(params => {
+      console.log(params) //log the entire params object
+      console.log(params['id']) //log the value of id
+    });
   }
 
 }
