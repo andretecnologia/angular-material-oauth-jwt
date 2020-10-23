@@ -5,6 +5,9 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/model/user/user';
 import { tap } from 'rxjs/operators';
+import { UserService } from 'src/app/core/service/user.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-list',
@@ -14,33 +17,34 @@ import { tap } from 'rxjs/operators';
 export class UsersListComponent implements OnInit {
 
   displayedColumns: string[] = ['actions', 'name', 'email'];
-  //data = new MatTableDataSource([]);
+  data = new MatTableDataSource([]);
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   rerender = false;
   filter = false;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
    constructor(
   //   private router: Router,
   //   private dialog: MatDialog,
-     private snackBar: MatSnackBar,
-  //   private rf: ChangeDetectorRef,
+      private snackBar: MatSnackBar,
+      private userService: UserService,
+      private rf: ChangeDetectorRef
    ) {}
 
   ngOnInit(): void {
     this.getUsers();
   }
   getUsers() {
-    // this.userService.getUserList().subscribe((res) => {
-    //   this.data.data = res;
-    //   this.data.paginator = this.paginator;
-    //   this.rerender = true;
-    //   this.rf.detectChanges();
-    //   this.rerender = false;
-    //   this.isLoadingResults = false;
-    // });
-    }
+    this.userService.getUserList().subscribe((res) => {
+      this.data.data = res;
+      this.data.paginator = this.paginator;
+      this.rerender = true;
+      this.rf.detectChanges();
+      this.rerender = false;
+      this.isLoadingResults = false;
+    });
+  }
 
     redirectEdit(user: User) {
       // this.router.navigate(['/home/usuarios/editar', user.id]);
