@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login/login.component';
 import { AuthGuardService } from './auth/auth.guard.service'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FuncionariosHomeComponent } from './pages/funcionarios/funcionarios-home/funcionarios-home.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
 
 
 const routes: Routes = [
@@ -29,10 +30,17 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'usuarios',
+    children: [
+      { path: '', component: UsersListComponent}
+    ]
+  },
+  {
     path: '**',
     redirectTo: '/login',
     pathMatch: 'full'
-  }
+  },
+  
 
 
   //   children: [

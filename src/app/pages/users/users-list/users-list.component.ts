@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 import { UserService } from 'src/app/core/service/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { AuthService } from 'src/app/auth/auth.services';
 
 @Component({
   selector: 'app-users-list',
@@ -27,6 +28,7 @@ export class UsersListComponent implements OnInit {
    constructor(
   //   private router: Router,
   //   private dialog: MatDialog,
+      private authService : AuthService,
       private snackBar: MatSnackBar,
       private userService: UserService,
       private rf: ChangeDetectorRef

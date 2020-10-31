@@ -24,7 +24,7 @@ export class UserService {
   }
 
   getUserList() {
-    return this.http.get<User[]>(`${environment.apiBaseUrl}/api/users`);
+    return this.http.get<User[]>(`${environment.apiBaseUrl}/user`);
   }
 
   getUserListPaginator(page, pageSize){
