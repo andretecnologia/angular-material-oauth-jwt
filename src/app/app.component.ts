@@ -27,15 +27,9 @@ export class AppComponent {
 
   }
 
-<<<<<<< HEAD
 
   public onSidenavClick(): void {
     this.isMenuOpen = false;
-=======
-  logout(){
-    this.authService.clearToken();
-    this.router.navigate(['/login']);
->>>>>>> 3dcbdda2a350c76f58d9ea269bc24ac1da7ae836
   }
 
   expansion(lista = []) {
