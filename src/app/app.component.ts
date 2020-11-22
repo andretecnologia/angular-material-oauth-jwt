@@ -32,6 +32,10 @@ export class AppComponent {
     this.isMenuOpen = false;
   }
 
+  logout() {
+    return;
+  }
+
   expansion(lista = []) {
     let saida = false;
     lista.forEach(element => {
