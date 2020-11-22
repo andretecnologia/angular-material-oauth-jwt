@@ -12,6 +12,8 @@ import { AuthService } from './auth/auth.services';
 })
 export class AppComponent {
   public first: string;
+  public isMenuOpen: boolean = false;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -23,6 +25,11 @@ export class AppComponent {
     public authService : AuthService
   ) {
 
+  }
+
+
+  public onSidenavClick(): void {
+    this.isMenuOpen = false;
   }
 
   expansion(lista = []) {
