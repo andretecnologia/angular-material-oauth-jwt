@@ -6,6 +6,11 @@ import { AuthGuardService } from './auth/auth.guard.service'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FuncionariosHomeComponent } from './pages/funcionarios/funcionarios-home/funcionarios-home.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+<<<<<<< HEAD
+=======
+import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
+import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
+>>>>>>> 3dcbdda2a350c76f58d9ea269bc24ac1da7ae836
 
 
 const routes: Routes = [
@@ -19,6 +24,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService]
   },
+
   {
     path: 'funcionarios',
     component: FuncionariosHomeComponent,
@@ -29,7 +35,9 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+
   {
+<<<<<<< HEAD
     path: 'usuarios',
     children: [
       { path: '', component: UsersListComponent}
@@ -42,6 +50,23 @@ const routes: Routes = [
   },
   
 
+=======
+    path: 'users',
+    component: UsersListComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      { path: '', component: UsersListComponent },
+      { path: 'create', component: UsersCreateComponent },
+      { path: 'edit/:id', component: UsersUpdateComponent },
+      { path: 'view/:id', component: UsersUpdateComponent }
+    ]
+  }
+//{
+  //  path: '**',
+  //  redirectTo: '/login',
+  //  pathMatch: 'full'
+  //}
+>>>>>>> 3dcbdda2a350c76f58d9ea269bc24ac1da7ae836
 
   //   children: [
   //     { path: '', component: DashboardComponent },
