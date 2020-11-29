@@ -5,7 +5,7 @@
           <mat-card-title class="text-center title">Login</mat-card-title>
 
           <mat-form-field>
-            <input matInput type="email" placeholder="Email" formControlName="email"/>
+            <input matInput type="email" placeholder="Insira seu endereço de e-mail" formControlName="email"/>
             <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
               O email é obrigatório
             </mat-error>
@@ -15,7 +15,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" />
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Insira sua senha" formControlName="password" />
             <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             <mat-error *ngIf="loginForm.controls.password.errors?.required">
               A senha é obrigatória
@@ -23,6 +23,7 @@
           </mat-form-field>
 
           <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
+          <button mat-raised-button color="secondary" type="button" (click)="criarUsuario()" class="button2">Criar usuário</button>
       </mat-card>
     </form>
 
