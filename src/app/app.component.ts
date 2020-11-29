@@ -28,12 +28,13 @@ export class AppComponent {
   }
 
 
-  public onSidenavClick(): void {
+  onSidenavClick(): void {
     this.isMenuOpen = false;
   }
 
-  logout() {
-    return;
+  logout():void {
+    this.authService.clearToken();
+    this.router.navigate(['/']);
   }
 
   expansion(lista = []) {

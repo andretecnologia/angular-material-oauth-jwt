@@ -14,22 +14,15 @@
         <h4 mat-line>Dashboard</h4>
       </a>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon mat-list-icon>view_list</mat-icon>
-            &nbsp;&nbsp;&nbsp;&ensp;Cadastros
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <a mat-list-item [routerLink]="'/usuarios'">
-          <mat-icon mat-list-icon>account_circle</mat-icon>
-          <h4 mat-line>Usuários</h4>
-        </a>
-        <a mat-list-item [routerLink]="'/funcionarios'">
-          <mat-icon mat-list-icon>assignment_ind</mat-icon>
-          <h4 mat-line>Funcionários</h4>
-        </a>
-      </mat-expansion-panel>
+      <a mat-list-item [routerLink]="'/usuarios'">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <h4 mat-line>Usuários</h4>
+      </a>
+      <a mat-list-item [routerLink]="'/funcionarios'">
+        <mat-icon mat-list-icon>assignment_ind</mat-icon>
+        <h4 mat-line>Funcionários</h4>
+      </a>
+      
     </mat-nav-list>
   </mat-sidenav>
 
@@ -40,7 +33,7 @@
       <button mat-button class="menu-button" (click)="sidenav.toggle()">
         <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
       </button>
-
+    
       <span class="example-spacer"></span>
       <small class="font-12">{{first}}</small>
       <button mat-icon-button (click)="logout()">

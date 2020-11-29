@@ -67,7 +67,6 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
 import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
@@ -85,8 +84,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     UsersListComponent,
     UsersFormComponent,
     UsersCreateComponent,
-    UsersUpdateComponent,
-    NavComponent
+    UsersUpdateComponent
   ],
   imports: [
     BrowserModule,

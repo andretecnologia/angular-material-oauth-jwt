@@ -44,9 +44,8 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    //const token = localStorage.getItem('token');
-    //return Boolean(token);
-    return true;
+    const token = localStorage.getItem('token');
+    return Boolean(token);
   }
 
   login({ email, password }, callback?: (any?: any) => void, error?: (msg: string) => void) {

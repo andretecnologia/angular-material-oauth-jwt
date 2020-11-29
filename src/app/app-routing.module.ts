@@ -33,6 +33,7 @@ const routes: Routes = [
 
   {
     path: 'usuarios',
+    canActivate: [AuthGuardService],
     children: [
       { path: '', component: UsersListComponent}
     ]
