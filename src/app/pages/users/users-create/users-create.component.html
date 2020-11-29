@@ -1,1 +1,78 @@
-<p>users-create works!</p>
+<div fxLayout="row" fxLayoutAlign="start center" class="title">
+    <span class="mat-display-1">Criar usuário</span>
+</div>
+<mat-divider class="header-divider"></mat-divider>
+
+<mat-card>
+    <div class="table-responsive">
+      <form [formGroup]="userForm">
+        <div>
+          <mat-form-field class="table-responsive-row">
+            <input matInput placeholder="Nome *" formControlName="name">
+            <mat-error *ngIf="userForm.controls.name.errors?.required">
+              O nome é obrigatório
+            </mat-error>
+          </mat-form-field>
+  
+        </div>
+  
+        <div >
+          <mat-form-field class="table-responsive-row" >
+            <input matInput placeholder="Email *" formControlName="email">
+            <mat-error *ngIf="userForm.controls.email.errors?.required">
+              O email é obrigatório
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.email.errors?.email">
+              Email inválido
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="table-responsive-row">
+            <input matInput placeholder="Confirmar Email *" formControlName="emailConfirm">
+            <mat-error *ngIf="userForm.controls.emailConfirm.errors?.required">
+              O email é obrigatório
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.emailConfirm.errors?.email">
+              Email inválido
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.emailConfirm.errors?.MatchEmail && userForm.controls.emailConfirm.value != '' && !userForm.controls.email.errors?.email">
+              Os emails estão diferentes
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div>
+          <mat-form-field class="table-responsive-row">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha *" formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="userForm.controls.password.errors?.required">
+              A senha é obrigatória
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.password.errors?.passwordInvalidLength">
+              A senha deve ter pelo menos 6 caracteres
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.password.errors?.passwordRule">
+              A senha deve ter letras maiusculas, minusculas, números e caracteres especiais
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="table-responsive-row">
+            <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirmar senha *" formControlName="passwordConfirm">
+            <mat-icon matSuffix (click)="hideConfirm = !hideConfirm" class="outline">{{hideConfirm ? 'visibility' :
+              'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="userForm.controls.passwordConfirm.errors?.required">
+              A senha é obrigatória
+            </mat-error>
+            <mat-error *ngIf="userForm.controls.passwordConfirm.errors?.MatchPassword && userForm.controls.passwordConfirm.value != ''">
+              As senhas estão diferentes
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        
+        <div class="button-row bt-submit">
+          <button mat-raised-button class="mat-raised-button mat-primary btn float-right" (click)="create()" [disabled]="!userForm.valid">Criar</button>
+        </div>
+      </form>
+    </div>
+  </mat-card>

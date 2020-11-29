@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  addUser() {
+    this.router.navigate(['/usuarios/novo']);
+  }
+
   openSnackBar(message: string, config) {
     this.snackBar.open(message, 'fechar', {
       duration: 9000,

@@ -1,9 +1,7 @@
 export class User {
-  id: number;
-  firstName = '';
-  lastName = '';
+  _id: number;
+  name = '';
   email = '';
   password = '';
-  cpf = '';
   token = '';
 }

@@ -9,6 +9,7 @@ import { UserService } from 'src/app/core/service/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth/auth.services';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users-list',
@@ -24,10 +25,11 @@ export class UsersListComponent implements OnInit {
   isRateLimitReached = false;
   rerender = false;
   filter = false;
+  title = "Listagem de usuários";
   @ViewChild(MatPaginator) paginator: MatPaginator;
    constructor(
-  //   private router: Router,
-  //   private dialog: MatDialog,
+    private router: Router,
+    private dialog: MatDialog,
       private authService : AuthService,
       private snackBar: MatSnackBar,
       private userService: UserService,
@@ -49,13 +51,12 @@ export class UsersListComponent implements OnInit {
   }
 
     redirectEdit(user: User) {
-      // this.router.navigate(['/home/usuarios/editar', user.id]);
+      this.router.navigate(['/usuarios/editar', user._id]);
     }
 
     redirectView(user: User) {
       // this.router.navigate(['/home/usuarios/view/', user.id]);
     }
-
 
     openDialogRemove(user): void {
       // const dialogRef = this.dialog.open(RemoveDialogComponent, {

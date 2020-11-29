@@ -6,6 +6,8 @@ import { AuthGuardService } from './auth/auth.guard.service'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FuncionariosHomeComponent } from './pages/funcionarios/funcionarios-home/funcionarios-home.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersCreateComponent } from './pages/users/users-create/users-create.component';
+import { UsersUpdateComponent } from './pages/users/users-update/users-update.component';
 
 
 const routes: Routes = [
@@ -33,9 +35,21 @@ const routes: Routes = [
 
   {
     path: 'usuarios',
-    canActivate: [AuthGuardService],
     children: [
-      { path: '', component: UsersListComponent}
+      { path: '', component: UsersListComponent},
+      { path: 'novo', component: UsersCreateComponent },
+      {
+          path: 'editar/:userId',
+          component: UsersUpdateComponent,
+          canActivate: [AuthGuardService]
+      },
+      // {
+      //   path: 'view/:userId',
+      //   component: ViewUserPageComponent,
+      //   resolve: { user: UserResolverService },
+      //   data: { permission: 'S_US' },
+      //   canActivate: [PermissionGuardService]
+      // }
     ]
   },
   {
@@ -43,8 +57,6 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
-  
-
 
   //   children: [
   //     { path: '', component: DashboardComponent },

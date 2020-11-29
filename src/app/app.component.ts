@@ -26,6 +26,11 @@ export class AppComponent {
   ) {
 
   }
+  
+
+  ngOnInit() {
+    this.onSidenavClick();
+  }
 
 
   onSidenavClick(): void {

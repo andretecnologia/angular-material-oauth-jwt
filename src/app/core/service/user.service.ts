@@ -12,11 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   createUser(user) {
-    user.username = user.email;
-    user.profileId = user.profileType;
-    delete user.profileType;
-    delete user.email;
-    return this.http.post<User>(`${environment.apiBaseUrl}/api/users`, user);
+    return this.http.post<User>(`${environment.apiBaseUrl}/api/users/create`, user);
   }
 
   filterUser(value){
@@ -24,7 +20,7 @@ export class UserService {
   }
 
   getUserList() {
-    return this.http.get<User[]>(`${environment.apiBaseUrl}/user`);
+    return this.http.get<User[]>(`${environment.apiBaseUrl}/api/users`);
   }
 
   getUserListPaginator(page, pageSize){
@@ -49,7 +45,7 @@ export class UserService {
     user.profileId = user.profileType;
     delete user.profileType;
     delete user.email;
-    return this.http.put(`${environment.apiBaseUrl}/api/users/${userId}`, user);
+    return this.http.put(`${environment.apiBaseUrl}/api/users/update/${userId}`, user);
   }
 
   editPassword(password){
@@ -58,8 +54,4 @@ export class UserService {
     return this.http.patch(`${environment.apiBaseUrl}/api/users/password`,password);
   }
 
-  updateProfile(profileId, userId){
-    const data = { profileId, userId };
-    return this.http.patch(`${environment.apiBaseUrl}/api/users/profile`, data);
-  }
 }
